@@ -9,8 +9,8 @@ interface Props {
 }
 
 const {
-  title = 'Maisterpiece — Handcrafted Pottery & Artisan Goods',
-  description = 'Handmade pottery and artisan soaps by a Slovak ceramic artist. Each piece is unique, shaped by hand and fired with care.',
+  title = 'Maisterpiece — Handcrafted Ceramics & Soaps',
+  description = 'Handcrafted ceramics and artisan soaps by a Slovak artist. Each piece is unique, shaped by hand.',
 } = Astro.props;
 ---
 
@@ -22,19 +22,18 @@ const {
     <meta name="description" content={description} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta name="theme-color" content="#FAF7F2" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#F5F0E4" />
+    <link rel="icon" type="image/svg+xml" href="/maisterpiece/favicon.svg" />
     <title>{title}</title>
   </head>
   <body>
     <Header />
-    <main>
+    <main class="pt-11">
       <slot />
     </main>
     <Footer />
 
     <script>
-      // Scroll reveal animation
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -44,9 +43,8 @@ const {
             }
           });
         },
-        { threshold: 0.1, rootMargin: '0px 0px -60px 0px' }
+        { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
       );
-
       document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
     </script>
   </body>

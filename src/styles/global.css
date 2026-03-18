@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -10,67 +10,48 @@
   }
 
   body {
-    @apply bg-cream-100 text-ink font-sans antialiased;
-    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+    background-color: #F5F0E4;
+    color: #0A0A0A;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    -webkit-font-smoothing: antialiased;
   }
 
   ::selection {
-    @apply bg-clay-300 text-ink;
-  }
-
-  h1, h2, h3, h4, h5 {
-    @apply font-serif font-light;
+    background: #0A0A0A;
+    color: #F5F0E4;
   }
 
   img {
-    @apply block max-w-full;
+    display: block;
+    max-width: 100%;
   }
 }
 
 @layer components {
-  .container-site {
-    @apply mx-auto w-full max-w-site px-5 sm:px-8 lg:px-12 xl:px-16;
+  /* Horizontal rule across full width */
+  .rule {
+    @apply border-t border-ink/20;
   }
 
-  .btn-primary {
-    @apply inline-flex items-center gap-2 px-8 py-3.5 bg-ink text-cream-100
-           font-sans text-sm tracking-widest uppercase
-           transition-all duration-300
-           hover:bg-clay-700 hover:gap-4;
+  /* Small uppercase label */
+  .label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #0A0A0A;
   }
 
-  .btn-outline {
-    @apply inline-flex items-center gap-2 px-8 py-3.5 border border-ink text-ink
-           font-sans text-sm tracking-widest uppercase
-           transition-all duration-300
-           hover:bg-ink hover:text-cream-100 hover:gap-4;
-  }
-
-  .btn-shopify {
-    @apply inline-flex items-center justify-center gap-2 w-full px-6 py-3.5
-           bg-ink text-cream-100 font-sans text-sm tracking-widest uppercase
-           transition-all duration-300
-           hover:bg-clay-700;
-  }
-
-  .section-label {
-    @apply font-sans text-xs tracking-[0.25em] uppercase text-ink-muted;
-  }
-
-  .divider {
-    @apply w-12 h-px bg-clay-400 origin-left;
-  }
-
-  .card-hover {
-    @apply transition-transform duration-500 ease-out hover:-translate-y-1;
-  }
-
-  /* Scroll animation helper */
+  /* Scroll reveal */
   .reveal {
-    @apply opacity-0 translate-y-6 transition-all duration-700 ease-out;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
   }
 
   .reveal.visible {
-    @apply opacity-100 translate-y-0;
+    opacity: 1;
+    transform: translateY(0);
   }
 }
