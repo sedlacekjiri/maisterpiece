@@ -15,16 +15,12 @@
   <div class="px-6 md:px-10 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start">
 
     <!-- Artist image -->
-    <div
-      class="w-full aspect-[3/4] max-w-sm reveal"
-      style="background-color: #C8C3BA;"
-    >
+    <div class="w-full aspect-[3/4] max-w-sm reveal overflow-hidden" style="background-color: #C8C3BA;">
       <img
-        src="/maisterpiece/images/about-artist.jpg"
-        alt="The artist at work"
-        class="w-full h-full object-cover"
+        src="https://cdn.prod.website-files.com/658f544331d16c0a01bd6937/658f55f5a9472f9ecd3e34e3_411555814_1290694265659619_5367797692436190560_n.jpg"
+        alt="Maja — ceramic artist"
+        class="w-full h-full object-cover object-top"
         loading="lazy"
-        onerror="this.style.display='none'"
       />
     </div>
 
@@ -33,9 +29,9 @@
 
       <div class="space-y-4">
         <p class="label leading-loose opacity-80 max-w-sm">
-          Hi, I'm Jana — a ceramic artist and soap maker based in Slovakia.
-          I started throwing pottery at my kitchen table and eventually turned
-          the spare room into a proper studio.
+          Hi, I'm Maja — a ceramic artist and crafter originally from Poland,
+          now based in Iceland. I started throwing pottery at my kitchen table
+          and eventually turned the spare room into a proper studio.
         </p>
         <p class="label leading-loose opacity-60 max-w-sm">
           My work is rooted in the Japanese concept of wabi-sabi — finding
@@ -43,8 +39,8 @@
           are exactly alike.
         </p>
         <p class="label leading-loose opacity-60 max-w-sm">
-          Alongside ceramics, I make small-batch cold-process soaps using
-          natural oils, clays, and botanicals from local farms.
+          Alongside ceramics, I work with other materials and crafts —
+          always small-batch, always by hand.
         </p>
       </div>
 
@@ -56,7 +52,7 @@
           { n: '100%', l: 'Handmade' },
         ].map(({ n, l }) => (
           <div>
-            <p class="label text-[18px] mb-1">{n}</p>
+            <p class="label text-[20px] mb-1">{n}</p>
             <p class="label opacity-40">{l}</p>
           </div>
         ))}
