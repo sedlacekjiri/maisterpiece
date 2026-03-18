@@ -1,172 +1,108 @@
 ---
-// Contact section — simple form (static, user wires up their backend or Formspree)
+// Contact section
 ---
 
-<section id="contact" class="py-28 md:py-36 bg-ink text-cream-100">
-  <div class="container-site">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+<section id="contact" class="border-t border-[#0A0A0A]/15 py-20 md:py-28">
 
-      <!-- Left: info -->
-      <div class="space-y-10">
-        <div class="reveal">
-          <p class="section-label text-cream-500 mb-3">Let's talk</p>
-          <h2 class="font-serif font-light text-heading text-cream-100">
-            Get in touch
-          </h2>
-          <div class="w-12 h-px bg-clay-400 mt-5 origin-left"></div>
+  <!-- Section header -->
+  <div class="flex items-baseline justify-between px-6 md:px-10 mb-12">
+    <p class="label opacity-40">(05)</p>
+    <p class="label">Contact</p>
+    <p class="label opacity-40">Let's talk</p>
+  </div>
+
+  <div class="px-6 md:px-10 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+
+    <!-- Info -->
+    <div class="space-y-6 reveal">
+      <p class="label leading-loose opacity-70 max-w-xs">
+        Custom commission, wholesale enquiry, or just a hello?
+        Fill in the form and I'll get back to you.
+      </p>
+      <div class="space-y-3 pt-2 border-t border-[#0A0A0A]/10">
+        <div>
+          <p class="label opacity-40 mb-0.5">Email</p>
+          <a href="mailto:hello@maisterpiece.art" class="label hover:opacity-50 transition-opacity">
+            hello@maisterpiece.art
+          </a>
         </div>
-
-        <p class="font-sans text-base text-cream-400 leading-relaxed max-w-sm reveal">
-          Interested in a custom commission, a wholesale enquiry, or just want to say hello? Fill in the form and I'll get back to you within a few days.
-        </p>
-
-        <div class="space-y-6 reveal">
-          {[
-            {
-              icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>`,
-              label: 'Email',
-              value: 'hello@maisterpiece.art',
-              href:  'mailto:hello@maisterpiece.art',
-            },
-            {
-              icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>`,
-              label: 'Instagram',
-              value: '@maisterpiece.art',
-              href:  'https://instagram.com/',
-            },
-            {
-              icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`,
-              label: 'Location',
-              value: 'Slovakia, Central Europe',
-              href:  undefined,
-            },
-          ].map(({ icon, label, value, href }) => (
-            <div class="flex items-start gap-4">
-              <span class="text-clay-400 mt-0.5 shrink-0" set:html={icon} />
-              <div>
-                <p class="font-sans text-xs tracking-[0.15em] uppercase text-cream-500 mb-0.5">{label}</p>
-                {href ? (
-                  <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                     class="font-sans text-sm text-cream-300 hover:text-cream-100 transition-colors">
-                    {value}
-                  </a>
-                ) : (
-                  <p class="font-sans text-sm text-cream-300">{value}</p>
-                )}
-              </div>
-            </div>
-          ))}
+        <div>
+          <p class="label opacity-40 mb-0.5">Instagram</p>
+          <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="label hover:opacity-50 transition-opacity">
+            @maisterpiece.art
+          </a>
         </div>
-      </div>
-
-      <!-- Right: form -->
-      <div class="reveal">
-        <!-- Replace action URL with your Formspree endpoint or custom API -->
-        <form
-          action="https://formspree.io/f/your-form-id"
-          method="POST"
-          class="space-y-5"
-          id="contact-form"
-        >
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <div class="flex flex-col gap-2">
-              <label for="name" class="font-sans text-xs tracking-[0.15em] uppercase text-cream-500">
-                Name
-              </label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                required
-                autocomplete="name"
-                placeholder="Your name"
-                class="bg-transparent border-b border-cream-600 text-cream-100
-                       font-sans text-sm py-3 px-0 placeholder-cream-700
-                       focus:outline-none focus:border-cream-300
-                       transition-colors duration-200"
-              />
-            </div>
-
-            <div class="flex flex-col gap-2">
-              <label for="email" class="font-sans text-xs tracking-[0.15em] uppercase text-cream-500">
-                Email
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                autocomplete="email"
-                placeholder="you@example.com"
-                class="bg-transparent border-b border-cream-600 text-cream-100
-                       font-sans text-sm py-3 px-0 placeholder-cream-700
-                       focus:outline-none focus:border-cream-300
-                       transition-colors duration-200"
-              />
-            </div>
-          </div>
-
-          <div class="flex flex-col gap-2">
-            <label for="subject" class="font-sans text-xs tracking-[0.15em] uppercase text-cream-500">
-              Subject
-            </label>
-            <select
-              id="subject"
-              name="subject"
-              class="bg-transparent border-b border-cream-600 text-cream-300
-                     font-sans text-sm py-3 px-0
-                     focus:outline-none focus:border-cream-300
-                     transition-colors duration-200 cursor-pointer"
-            >
-              <option value="" disabled selected class="bg-ink">Select a topic</option>
-              <option value="custom-commission" class="bg-ink">Custom commission</option>
-              <option value="wholesale"         class="bg-ink">Wholesale enquiry</option>
-              <option value="order-question"    class="bg-ink">Question about an order</option>
-              <option value="general"           class="bg-ink">General hello</option>
-            </select>
-          </div>
-
-          <div class="flex flex-col gap-2">
-            <label for="message" class="font-sans text-xs tracking-[0.15em] uppercase text-cream-500">
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              rows="5"
-              required
-              placeholder="Tell me what you have in mind…"
-              class="bg-transparent border-b border-cream-600 text-cream-100
-                     font-sans text-sm py-3 px-0 placeholder-cream-700 resize-none
-                     focus:outline-none focus:border-cream-300
-                     transition-colors duration-200"
-            ></textarea>
-          </div>
-
-          <div class="pt-4">
-            <button
-              type="submit"
-              class="btn-primary w-full sm:w-auto justify-center
-                     bg-cream-100 text-ink hover:bg-clay-300"
-            >
-              Send message
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/>
-              </svg>
-            </button>
-          </div>
-
-          <!-- Success / error messages -->
-          <p id="form-success" class="hidden font-sans text-sm text-clay-300 pt-2">
-            Thank you! I'll be in touch soon.
-          </p>
-          <p id="form-error" class="hidden font-sans text-sm text-red-400 pt-2">
-            Something went wrong. Please try emailing me directly.
-          </p>
-        </form>
+        <div>
+          <p class="label opacity-40 mb-0.5">Location</p>
+          <p class="label">Slovakia, Central Europe</p>
+        </div>
       </div>
     </div>
+
+    <!-- Form -->
+    <div class="reveal">
+      <form
+        action="https://formspree.io/f/your-form-id"
+        method="POST"
+        id="contact-form"
+        class="space-y-6"
+      >
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div>
+            <label for="name" class="label opacity-40 block mb-2">Name</label>
+            <input
+              id="name" name="name" type="text" required autocomplete="name"
+              placeholder="Your name"
+              class="w-full bg-transparent border-b border-[#0A0A0A]/25 text-[#0A0A0A] label py-2 px-0 placeholder-[#0A0A0A]/25 focus:outline-none focus:border-[#0A0A0A]/70 transition-colors"
+            />
+          </div>
+          <div>
+            <label for="email" class="label opacity-40 block mb-2">Email</label>
+            <input
+              id="email" name="email" type="email" required autocomplete="email"
+              placeholder="you@example.com"
+              class="w-full bg-transparent border-b border-[#0A0A0A]/25 text-[#0A0A0A] label py-2 px-0 placeholder-[#0A0A0A]/25 focus:outline-none focus:border-[#0A0A0A]/70 transition-colors"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label for="subject" class="label opacity-40 block mb-2">Subject</label>
+          <select
+            id="subject" name="subject"
+            class="w-full bg-transparent border-b border-[#0A0A0A]/25 text-[#0A0A0A] label py-2 px-0 focus:outline-none focus:border-[#0A0A0A]/70 transition-colors cursor-pointer appearance-none"
+          >
+            <option value="" disabled selected>Select a topic</option>
+            <option value="custom-commission">Custom commission</option>
+            <option value="wholesale">Wholesale enquiry</option>
+            <option value="order-question">Order question</option>
+            <option value="general">General hello</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="message" class="label opacity-40 block mb-2">Message</label>
+          <textarea
+            id="message" name="message" rows="4" required
+            placeholder="Tell me what you have in mind…"
+            class="w-full bg-transparent border-b border-[#0A0A0A]/25 text-[#0A0A0A] label py-2 px-0 placeholder-[#0A0A0A]/25 resize-none focus:outline-none focus:border-[#0A0A0A]/70 transition-colors"
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          class="label border border-[#0A0A0A]/30 px-6 py-3 hover:bg-[#0A0A0A] hover:text-[#F5F0E4] transition-all duration-150"
+        >
+          Send message →
+        </button>
+
+        <p id="form-success" class="hidden label opacity-60">Thank you! I'll be in touch soon.</p>
+        <p id="form-error"   class="hidden label opacity-60">Something went wrong. Please email me directly.</p>
+      </form>
+    </div>
+
   </div>
+
 </section>
 
 <script>
@@ -177,21 +113,15 @@
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     const data = new FormData(form);
-
     try {
       const res = await fetch(form.action, {
-        method: 'POST',
-        body: data,
-        headers: { Accept: 'application/json' },
+        method: 'POST', body: data, headers: { Accept: 'application/json' },
       });
-
       if (res.ok) {
         form.reset();
         success.classList.remove('hidden');
         error.classList.add('hidden');
-      } else {
-        throw new Error('bad response');
-      }
+      } else throw new Error();
     } catch {
       error.classList.remove('hidden');
       success.classList.add('hidden');
