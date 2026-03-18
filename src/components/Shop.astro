@@ -1,0 +1,234 @@
+---
+// Shopify Buy Now buttons
+// Replace `shopifyUrl` with your actual Shopify product URL
+// or use a Shopify Buy Button embed for full cart functionality.
+
+const products = [
+  {
+    id: 1,
+    name:        'Ash-glaze Serving Bowl',
+    category:    'Pottery',
+    price:       '€ 68',
+    description: 'Wheel-thrown stoneware fired to cone 6. Natural wood-ash glaze creates a unique, unrepeatable surface. Food and dishwasher safe.',
+    tags:        ['One of a kind', 'Stoneware', 'Food safe'],
+    image:       '/images/shop-bowl.jpg',
+    shopifyUrl:  'https://your-store.myshopify.com/products/ash-glaze-bowl',
+    featured:    true,
+    soldOut:     false,
+  },
+  {
+    id: 2,
+    name:        'Wabi-sabi Vase — Small',
+    category:    'Pottery',
+    price:       '€ 42',
+    description: 'Hand-pinched earthenware with raw, textured exterior. Waterproof interior glaze. Perfect for dried botanicals.',
+    tags:        ['Hand-pinched', 'Earthenware'],
+    image:       '/images/shop-vase.jpg',
+    shopifyUrl:  'https://your-store.myshopify.com/products/wabi-vase-small',
+    featured:    false,
+    soldOut:     false,
+  },
+  {
+    id: 3,
+    name:        'Espresso Cup',
+    category:    'Pottery',
+    price:       '€ 32',
+    description: 'Holds 80 ml. Off-white slip with iron-oxide detail. Each cup has slight variations — no two are alike.',
+    tags:        ['Wheel-thrown', 'Stoneware', 'Food safe'],
+    image:       '/images/shop-cup.jpg',
+    shopifyUrl:  'https://your-store.myshopify.com/products/espresso-cup',
+    featured:    false,
+    soldOut:     false,
+  },
+  {
+    id: 4,
+    name:        'Lavender & Clay Soap Bar',
+    category:    'Soap',
+    price:       '€ 12',
+    description: 'Cold-process soap with kaolin clay, lavender essential oil, and dried lavender buds. Natural colorants, no SLS.',
+    tags:        ['Cold process', 'Vegan', 'Natural'],
+    image:       '/images/shop-soap-lavender.jpg',
+    shopifyUrl:  'https://your-store.myshopify.com/products/lavender-clay-soap',
+    featured:    false,
+    soldOut:     false,
+  },
+  {
+    id: 5,
+    name:        'Goat Milk Rose Soap',
+    category:    'Soap',
+    price:       '€ 13',
+    description: 'Creamy goat-milk bar with rosehip powder and a hint of rose geranium. Deeply moisturising.',
+    tags:        ['Goat milk', 'Moisturising', 'Natural'],
+    image:       '/images/shop-soap-rose.jpg',
+    shopifyUrl:  'https://your-store.myshopify.com/products/goat-milk-rose-soap',
+    featured:    false,
+    soldOut:     false,
+  },
+  {
+    id: 6,
+    name:        'Soap Gift Set — 3 bars',
+    category:    'Soap',
+    price:       '€ 34',
+    description: 'A curated trio of handmade soaps, wrapped in kraft paper and twine. Choose your scent combination at checkout.',
+    tags:        ['Gift', 'Set of 3', 'Custom scent'],
+    image:       '/images/shop-soap-set.jpg',
+    shopifyUrl:  'https://your-store.myshopify.com/products/soap-gift-set',
+    featured:    true,
+    soldOut:     false,
+  },
+];
+
+const categories = ['All', ...new Set(products.map(p => p.category))];
+---
+
+<section id="shop" class="py-28 md:py-36 bg-cream-200">
+  <div class="container-site">
+
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-4">
+      <div class="reveal">
+        <p class="section-label mb-3">Available now</p>
+        <h2 class="font-serif font-light text-heading text-ink">
+          Shop
+        </h2>
+        <div class="divider mt-5"></div>
+      </div>
+      <p class="font-sans text-sm text-ink-muted max-w-xs leading-relaxed reveal">
+        All items are handmade in small batches. Purchases are handled securely via Shopify.
+      </p>
+    </div>
+
+    <!-- Filter tabs -->
+    <div class="flex gap-3 flex-wrap mb-12 reveal">
+      {categories.map((cat, i) => (
+        <button
+          data-filter={cat}
+          class={`filter-btn font-sans text-xs tracking-[0.15em] uppercase px-5 py-2.5
+                  border transition-all duration-200
+                  ${i === 0
+                    ? 'border-ink bg-ink text-cream-100 active'
+                    : 'border-cream-400 text-ink-muted hover:border-ink hover:text-ink'}`}
+        >
+          {cat}
+        </button>
+      ))}
+    </div>
+
+    <!-- Product grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" id="product-grid">
+      {products.map((product, i) => (
+        <article
+          class="product-card group flex flex-col bg-cream-50 reveal"
+          data-category={product.category}
+          style={`transition-delay: ${i * 60}ms`}
+        >
+          <!-- Image -->
+          <div class="relative overflow-hidden aspect-[3/4] bg-cream-300">
+            <img
+              src={product.image}
+              alt={product.name}
+              class="w-full h-full object-cover transition-transform duration-700 ease-out
+                     group-hover:scale-103"
+              loading="lazy"
+              width="480"
+              height="640"
+            />
+
+            {product.featured && (
+              <span class="absolute top-4 left-4 bg-clay-500 text-cream-100 font-sans text-[10px] tracking-widest uppercase px-3 py-1">
+                Featured
+              </span>
+            )}
+
+            {product.soldOut && (
+              <div class="absolute inset-0 bg-cream-100/60 flex items-center justify-center">
+                <span class="font-sans text-xs tracking-widest uppercase text-ink-muted border border-ink-muted px-4 py-2">
+                  Sold out
+                </span>
+              </div>
+            )}
+          </div>
+
+          <!-- Card body -->
+          <div class="flex flex-col flex-1 p-6 gap-4">
+            <!-- Meta -->
+            <div>
+              <p class="section-label text-[10px] mb-1.5">{product.category}</p>
+              <h3 class="font-serif text-xl text-ink leading-snug">{product.name}</h3>
+            </div>
+
+            <p class="font-sans text-sm text-ink-muted leading-relaxed flex-1">
+              {product.description}
+            </p>
+
+            <!-- Tags -->
+            <div class="flex flex-wrap gap-1.5">
+              {product.tags.map((tag) => (
+                <span class="font-sans text-[10px] tracking-wide uppercase text-ink-subtle border border-cream-400 px-2 py-0.5">
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            <!-- Price & CTA -->
+            <div class="flex items-center justify-between pt-2 border-t border-cream-300">
+              <span class="font-serif text-2xl text-ink">{product.price}</span>
+              {product.soldOut ? (
+                <span class="font-sans text-xs tracking-widest uppercase text-ink-subtle px-6 py-3 border border-cream-300 cursor-not-allowed">
+                  Sold out
+                </span>
+              ) : (
+                <a
+                  href={product.shopifyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn-primary text-xs py-2.5 px-6"
+                  aria-label={`Buy ${product.name} on Shopify — ${product.price}`}
+                >
+                  Buy now
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                    <polyline points="15 3 21 3 21 9"/>
+                    <line x1="10" y1="14" x2="21" y2="3"/>
+                  </svg>
+                </a>
+              )}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Shop note -->
+    <p class="font-sans text-xs text-ink-subtle text-center mt-12 reveal">
+      Payments are processed securely by Shopify. Shipping within the EU.
+      For custom commissions, <a href="#contact" class="underline underline-offset-4 hover:text-ink transition-colors">get in touch</a>.
+    </p>
+  </div>
+</section>
+
+<script>
+  // Category filter
+  const filterBtns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const cards      = document.querySelectorAll<HTMLElement>('.product-card');
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const cat = btn.dataset.filter!;
+
+      // Update active button
+      filterBtns.forEach((b) => {
+        b.classList.remove('border-ink', 'bg-ink', 'text-cream-100', 'active');
+        b.classList.add('border-cream-400', 'text-ink-muted');
+      });
+      btn.classList.add('border-ink', 'bg-ink', 'text-cream-100', 'active');
+      btn.classList.remove('border-cream-400', 'text-ink-muted');
+
+      // Filter cards
+      cards.forEach((card) => {
+        const matches = cat === 'All' || card.dataset.category === cat;
+        card.style.display = matches ? '' : 'none';
+      });
+    });
+  });
+</script>

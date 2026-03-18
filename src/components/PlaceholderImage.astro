@@ -1,0 +1,42 @@
+---
+// This component generates inline SVG placeholders for development.
+// Replace with real <img> tags pointing to actual photos in production.
+
+interface Props {
+  label?: string;
+  aspectRatio?: string; // e.g. "3/4"
+  bg?: string;
+  class?: string;
+}
+
+const {
+  label = 'Photo',
+  aspectRatio = '3/4',
+  bg = '#E8DED0',
+  class: className = '',
+} = Astro.props;
+---
+
+<div
+  class={`relative flex items-center justify-center overflow-hidden ${className}`}
+  style={`aspect-ratio:${aspectRatio}; background:${bg};`}
+  aria-label={label}
+  role="img"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 200 200"
+    class="w-16 h-16 text-clay-400 opacity-40"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1"
+  >
+    <!-- Abstract pottery bowl -->
+    <path d="M50 80 Q50 140 100 140 Q150 140 150 80 Z" stroke-linecap="round"/>
+    <ellipse cx="100" cy="80" rx="50" ry="14"/>
+    <ellipse cx="100" cy="155" rx="20" ry="6" opacity="0.5"/>
+  </svg>
+  <span class="absolute bottom-4 font-sans text-xs tracking-widest uppercase text-clay-500/60">
+    {label}
+  </span>
+</div>
