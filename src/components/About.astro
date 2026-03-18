@@ -1,0 +1,84 @@
+---
+// About section
+---
+
+<section id="about" class="py-28 md:py-36 bg-cream-100 overflow-hidden">
+  <div class="container-site">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+
+      <!-- Image side -->
+      <div class="relative reveal">
+        <!-- Main photo -->
+        <div class="relative z-10 overflow-hidden aspect-[3/4] max-w-sm mx-auto lg:mx-0">
+          <img
+            src="/images/about-artist.jpg"
+            alt="The artist at her pottery wheel"
+            class="w-full h-full object-cover"
+            loading="lazy"
+            width="480"
+            height="640"
+          />
+        </div>
+        <!-- Decorative block behind image -->
+        <div
+          class="absolute -bottom-6 -right-6 w-48 h-64 bg-clay-200/50 -z-0"
+          aria-hidden="true"
+        ></div>
+        <!-- Small quote label -->
+        <div
+          class="absolute -top-4 right-0 lg:-right-12 z-20 bg-cream-50 px-6 py-4 shadow-sm max-w-[200px]"
+        >
+          <p class="font-serif italic text-sm text-ink leading-snug">
+            "Clay teaches patience. Every crack is a lesson."
+          </p>
+        </div>
+      </div>
+
+      <!-- Text side -->
+      <div class="space-y-8">
+        <div class="reveal">
+          <p class="section-label mb-3">The maker</p>
+          <h2 class="font-serif font-light text-heading text-ink">
+            About me
+          </h2>
+          <div class="divider mt-5"></div>
+        </div>
+
+        <div class="space-y-5 font-sans text-base text-ink-light leading-relaxed reveal">
+          <p>
+            Hi, I'm Jana — a ceramic artist and soap maker based in Slovakia. I started throwing pottery at my kitchen table and eventually turned the spare room into a proper studio.
+          </p>
+          <p>
+            My work is rooted in the Japanese concept of <em>wabi-sabi</em> — finding beauty in the imperfect, impermanent, and incomplete. No two pieces are exactly alike, and I think that's the point.
+          </p>
+          <p>
+            Alongside ceramics, I make small-batch cold-process soaps using natural oils, clays, and botanicals sourced from local farms. Same philosophy: simple ingredients, honest craft.
+          </p>
+        </div>
+
+        <!-- Stats / highlights -->
+        <div class="grid grid-cols-3 gap-4 pt-4 reveal">
+          {[
+            { number: '8+', label: 'Years throwing' },
+            { number: '200+', label: 'Unique pieces' },
+            { number: '100%', label: 'Handmade' },
+          ].map(({ number, label }) => (
+            <div class="text-center border-r border-cream-300 last:border-0 pr-4 last:pr-0">
+              <p class="font-serif text-3xl text-clay-500">{number}</p>
+              <p class="font-sans text-xs tracking-wide uppercase text-ink-muted mt-1">{label}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="pt-2 reveal">
+          <a href="#contact" class="btn-outline">
+            Work with me
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

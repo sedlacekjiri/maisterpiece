@@ -1,0 +1,101 @@
+---
+// Hero section — full-screen opening
+---
+
+<section
+  id="hero"
+  class="relative min-h-screen flex items-end overflow-hidden bg-cream-200"
+>
+  <!-- Background visual — abstract clay texture (CSS art) -->
+  <div class="absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+    <!-- Large organic shape top-right -->
+    <div
+      class="absolute -top-24 -right-24 w-[600px] h-[600px] rounded-full
+             bg-gradient-to-br from-clay-200 via-cream-300 to-cream-200
+             opacity-60 blur-3xl"
+    ></div>
+    <!-- Small accent bottom-left -->
+    <div
+      class="absolute bottom-0 -left-12 w-[400px] h-[500px] rounded-full
+             bg-gradient-to-tr from-clay-300/40 via-cream-400/30 to-transparent
+             blur-2xl"
+    ></div>
+    <!-- Subtle noise texture overlay -->
+    <div class="absolute inset-0 bg-[url('/noise.svg')] opacity-[0.04] mix-blend-multiply"></div>
+  </div>
+
+  <!-- Hero image column -->
+  <div class="absolute inset-0 z-0 hidden lg:flex">
+    <div class="w-1/2"></div>
+    <div class="w-1/2 h-full relative overflow-hidden">
+      <img
+        src="/images/hero-pottery.jpg"
+        alt="Handthrown stoneware bowl with natural ash glaze"
+        class="w-full h-full object-cover object-center"
+        width="900"
+        height="1200"
+      />
+      <!-- Gradient bleed so image merges left into bg -->
+      <div class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-cream-200 to-transparent z-10"></div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 container-site pb-20 pt-32 lg:pb-28">
+    <div class="max-w-xl lg:max-w-2xl">
+      <!-- Label -->
+      <p class="section-label mb-6 opacity-0 animate-fade-in" style="animation-delay:0.1s; animation-fill-mode:forwards;">
+        Handcrafted pottery &amp; artisan goods
+      </p>
+
+      <!-- Headline -->
+      <h1
+        class="font-serif font-light text-display text-ink leading-none mb-8
+               opacity-0 animate-fade-up"
+        style="animation-delay:0.25s; animation-fill-mode:forwards;"
+      >
+        Shaped<br />
+        by&nbsp;hand,<br />
+        fired&nbsp;with<br />
+        <em class="text-clay-500 not-italic">care.</em>
+      </h1>
+
+      <!-- Subheading -->
+      <p
+        class="font-sans font-light text-lg text-ink-light leading-relaxed mb-10 max-w-sm
+               opacity-0 animate-fade-up"
+        style="animation-delay:0.4s; animation-fill-mode:forwards;"
+      >
+        Every bowl, vase, and soap bar is made in small batches — imperfect by design, perfect by nature.
+      </p>
+
+      <!-- CTAs -->
+      <div
+        class="flex flex-wrap gap-4
+               opacity-0 animate-fade-up"
+        style="animation-delay:0.55s; animation-fill-mode:forwards;"
+      >
+        <a href="#shop" class="btn-primary">
+          Shop the collection
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <a href="#portfolio" class="btn-outline">
+          View portfolio
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div
+    class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2
+           opacity-0 animate-fade-in"
+    style="animation-delay:1.2s; animation-fill-mode:forwards;"
+    aria-hidden="true"
+  >
+    <span class="section-label text-[10px]">Scroll</span>
+    <span class="w-px h-10 bg-clay-400 animate-pulse"></span>
+  </div>
+</section>
