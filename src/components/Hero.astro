@@ -1,36 +1,33 @@
 ---
-// Hero — full-screen background image
+// Hero — editorial layout with contained photo on the right
 ---
 
-<section id="work" class="h-screen flex flex-col relative overflow-hidden">
-
-  <!-- Full-screen background image -->
-  <img
-    src="https://cdn.prod.website-files.com/687ebffd20183c0459d68784/69bc350652c6dc86ba0f942e_5Q2A8467.JPG"
-    alt="Maja's ceramic work"
-    class="absolute inset-0 w-full h-full object-cover object-center"
-    fetchpriority="high"
-  />
-
-  <!-- Subtle dark vignette so text is readable -->
-  <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30 pointer-events-none"></div>
+<section id="work" class="h-screen flex flex-col relative overflow-hidden bg-[#F5F0E4]">
 
   <!-- Top-left: project meta -->
   <div class="relative px-6 md:px-10 pt-14 pb-8 z-10">
-    <p class="label mb-4 text-[#F5F0E4] opacity-60">(01)</p>
-    <p class="label leading-loose text-[#F5F0E4] opacity-90 max-w-[220px]">
+    <p class="label mb-4 text-ink opacity-60">(01)</p>
+    <p class="label leading-loose text-ink opacity-90 max-w-[220px]">
       Handcrafted ceramics<br>
       &amp; other craft,<br>
       made in Iceland.
     </p>
   </div>
 
+  <!-- Right: contained photo -->
+  <img
+    src="https://cdn.prod.website-files.com/687ebffd20183c0459d68784/69bc350652c6dc86ba0f942e_5Q2A8467.JPG"
+    alt="Maja's ceramic work"
+    class="absolute top-[14%] bottom-[15%] left-[35%] right-[3%] w-[62%] h-[71%] object-cover"
+    fetchpriority="high"
+  />
+
   <!-- Bottom corners: pinned absolutely -->
   <div class="absolute bottom-0 left-0 right-0 flex items-end justify-between px-6 md:px-10 pb-8 z-10">
-    <a href="#shop" class="label text-[#F5F0E4] hover:opacity-50 transition-opacity">
+    <a href="#shop" class="label text-ink hover:opacity-50 transition-opacity">
       Shop the collection →
     </a>
-    <a href="#work" class="label text-[#F5F0E4] opacity-50 hover:opacity-90 transition-opacity">
+    <a href="#work" class="label text-ink opacity-50 hover:opacity-90 transition-opacity">
       Scroll ↓
     </a>
   </div>
