@@ -14,10 +14,14 @@ const navLinks = [
       Maisterpiece
     </a>
 
-    <!-- Center: section indicator (desktop) -->
-    <span id="header-section" class="label hidden md:block opacity-50">
-      (Index)
-    </span>
+    <!-- Center: logo -->
+    <a href="/" class="hidden md:block">
+      <img
+        src="https://cdn.prod.website-files.com/658f544331d16c0a01bd6937/69bc6715491f5f016705a37c_Grafika_bez_nazwy%202.PNG"
+        alt="Maisterpiece"
+        class="h-7 w-auto"
+      />
+    </a>
 
     <!-- Nav -->
     <nav class="hidden md:flex items-center gap-6">
@@ -84,21 +88,4 @@ const navLinks = [
     });
   });
 
-  // Update center label on scroll
-  const sections: [string, string][] = [
-    ['work',    '(Work)'   ],
-    ['shop',    '(Shop)'   ],
-    ['about',   '(About)'  ],
-    ['contact', '(Contact)'],
-  ];
-  const label = document.getElementById('header-section')!;
-
-  window.addEventListener('scroll', () => {
-    let current = '(Index)';
-    for (const [id, name] of sections) {
-      const el = document.getElementById(id);
-      if (el && window.scrollY >= el.offsetTop - 80) current = name;
-    }
-    label.textContent = current;
-  }, { passive: true });
 </script>
