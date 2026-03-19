@@ -1,6 +1,6 @@
 ---
 import { products } from '../data/products';
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <section id="shop" class="border-t border-[#0A0A0A]/15 py-20 md:py-28">
@@ -30,7 +30,7 @@ const base = import.meta.env.BASE_URL;
       <article class="product-card group reveal" data-category={p.category}>
 
         <!-- Image -->
-        <a href={`${base}products/${p.slug}`} class="block w-full aspect-[3/4] mb-4 relative overflow-hidden" style={`background-color: ${p.bg};`}>
+        <a href={`${base}/products/${p.slug}`} class="block w-full aspect-[3/4] mb-4 relative overflow-hidden" style={`background-color: ${p.bg};`}>
           {p.image && (
             <img
               src={p.image}
@@ -54,7 +54,7 @@ const base = import.meta.env.BASE_URL;
         <!-- Actions -->
         <div class="flex gap-3">
           <a
-            href={`${base}products/${p.slug}`}
+            href={`${base}/products/${p.slug}`}
             class="label flex-1 text-center border border-[#0A0A0A]/30 px-4 py-2 hover:bg-[#0A0A0A]/5 transition-colors duration-150"
           >
             Detail
