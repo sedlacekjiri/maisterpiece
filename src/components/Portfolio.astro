@@ -1,11 +1,17 @@
 ---
 const works = [
-  { id: '01', title: 'Ash-glaze Serving Bowl', category: 'Pottery', year: '2024', bg: '#C8C3BA' },
-  { id: '02', title: 'Wabi-sabi Vase Series',  category: 'Pottery', year: '2024', bg: '#BEB9B0' },
-  { id: '03', title: 'Espresso Cup Set',        category: 'Pottery', year: '2023', bg: '#C4BEB5' },
-  { id: '04', title: 'Salt Bar Soap Quartet',   category: 'Soap',    year: '2024', bg: '#D0CAC1' },
-  { id: '05', title: 'Stoneware Dinner Plates', category: 'Pottery', year: '2024', bg: '#B8B3AB' },
-  { id: '06', title: 'Botanical Soap Set',      category: 'Soap',    year: '2023', bg: '#D4CFC8' },
+  {
+    id: '01', title: 'Ash-glaze Serving Bowl', category: 'Pottery', year: '2024', bg: '#C8C3BA',
+    image: 'https://cdn.prod.website-files.com/658f544331d16c0a01bd6937/69bc63500574095e30efcdd0_IMG_0748.JPG',
+  },
+  {
+    id: '02', title: 'Wabi-sabi Vase Series', category: 'Pottery', year: '2024', bg: '#BEB9B0',
+    image: 'https://cdn.prod.website-files.com/658f544331d16c0a01bd6937/69bc635066720bf2459ae5cd_IMG_0749.JPG',
+  },
+  { id: '03', title: 'Espresso Cup Set',        category: 'Pottery', year: '2023', bg: '#C4BEB5', image: null },
+  { id: '04', title: 'Salt Bar Soap Quartet',   category: 'Soap',    year: '2024', bg: '#D0CAC1', image: null },
+  { id: '05', title: 'Stoneware Dinner Plates', category: 'Pottery', year: '2024', bg: '#B8B3AB', image: null },
+  { id: '06', title: 'Botanical Soap Set',      category: 'Soap',    year: '2023', bg: '#D4CFC8', image: null },
 ];
 ---
 
@@ -22,18 +28,19 @@ const works = [
   <div class="px-6 md:px-10 grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
     {works.map((work) => (
       <article class="group cursor-default reveal">
-        <!-- Image placeholder -->
+        <!-- Image -->
         <div
           class="w-full aspect-[3/4] mb-3 relative overflow-hidden"
           style={`background-color: ${work.bg};`}
         >
-          <img
-            src={`/maisterpiece/images/portfolio-${work.id}.jpg`}
-            alt={work.title}
-            class="w-full h-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100 absolute inset-0"
-            loading="lazy"
-            onerror="this.style.display='none'"
-          />
+          {work.image && (
+            <img
+              src={work.image}
+              alt={work.title}
+              class="w-full h-full object-cover absolute inset-0 transition-transform duration-700 group-hover:scale-105"
+              loading="lazy"
+            />
+          )}
         </div>
         <!-- Caption -->
         <p class="label mb-1 opacity-40">{work.category} — {work.year}</p>
