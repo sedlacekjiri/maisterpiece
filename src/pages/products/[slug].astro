@@ -1,0 +1,163 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { products } from '../../data/products';
+
+export function getStaticPaths() {
+  return products.map((p) => ({ params: { slug: p.slug }, props: { product: p } }));
+}
+
+const { product: p } = Astro.props;
+const base = import.meta.env.BASE_URL;
+
+// Related products (same category, excluding self)
+const related = products.filter((r) => r.category === p.category && r.slug !== p.slug).slice(0, 3);
+---
+
+<Layout title={`${p.name} — Maisterpiece`} description={p.description}>
+
+  <div class="min-h-screen bg-[#F5F0E4]">
+
+    <!-- Breadcrumb -->
+    <div class="px-6 md:px-10 pt-8 pb-6 border-b border-[#0A0A0A]/10">
+      <a href={`${base}#shop`} class="label opacity-40 hover:opacity-100 transition-opacity">
+        ← Shop
+      </a>
+    </div>
+
+    <!-- Main product layout -->
+    <div class="px-6 md:px-10 py-12 md:py-20 grid md:grid-cols-2 gap-12 md:gap-20 items-start">
+
+      <!-- Left: image / gallery -->
+      <div class="space-y-3">
+        <!-- Primary image -->
+        <div
+          class="w-full aspect-[4/5] relative overflow-hidden"
+          style={`background-color: ${p.bg};`}
+        >
+          {p.image ? (
+            <img
+              src={p.image}
+              alt={p.name}
+              class="w-full h-full object-cover"
+              fetchpriority="high"
+            />
+          ) : (
+            <div class="w-full h-full flex items-end p-6">
+              <p class="label opacity-30">Photo coming soon</p>
+            </div>
+          )}
+        </div>
+
+        <!-- Gallery row (additional images if any) -->
+        {p.gallery.length > 1 && (
+          <div class="grid grid-cols-3 gap-3">
+            {p.gallery.map((src, i) => (
+              <div
+                class="aspect-square relative overflow-hidden cursor-pointer gallery-thumb"
+                style={`background-color: ${p.bg};`}
+                data-src={src}
+              >
+                <img
+                  src={src}
+                  alt={`${p.name} — view ${i + 1}`}
+                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <!-- Right: product info -->
+      <div class="md:sticky md:top-24 space-y-8">
+
+        <!-- Category + title -->
+        <div>
+          <p class="label opacity-40 mb-3">{p.category}</p>
+          <h1 class="font-mono text-2xl md:text-3xl font-normal tracking-tight leading-snug mb-4">
+            {p.name}
+          </h1>
+          <p class="font-mono text-xl tracking-wide">{p.price}</p>
+        </div>
+
+        <!-- Description -->
+        <div class="border-t border-[#0A0A0A]/10 pt-8">
+          <p class="label opacity-40 mb-3">About this piece</p>
+          <p class="font-mono text-sm leading-relaxed opacity-80">{p.description}</p>
+        </div>
+
+        <!-- Details -->
+        <div class="border-t border-[#0A0A0A]/10 pt-8 space-y-3">
+          <p class="label opacity-40 mb-3">Details</p>
+          <div class="flex justify-between">
+            <span class="label opacity-50">Category</span>
+            <span class="label">{p.category}</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="label opacity-50">Made in</span>
+            <span class="label">Iceland</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="label opacity-50">Shipping</span>
+            <span class="label">EU · 5–10 days</span>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="border-t border-[#0A0A0A]/10 pt-8 space-y-3">
+          {p.soldOut ? (
+            <p class="label opacity-40 text-center py-4">Currently sold out</p>
+          ) : (
+            <a
+              href={p.shopifyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block w-full label text-center bg-[#0A0A0A] text-[#F5F0E4] px-6 py-4 hover:bg-[#0A0A0A]/80 transition-colors duration-150"
+            >
+              Buy Now — {p.price}
+            </a>
+          )}
+          <a
+            href={`${base}#contact`}
+            class="block w-full label text-center border border-[#0A0A0A]/30 px-6 py-4 hover:bg-[#0A0A0A]/5 transition-colors duration-150"
+          >
+            Ask a question →
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Related products -->
+    {related.length > 0 && (
+      <div class="border-t border-[#0A0A0A]/10 px-6 md:px-10 py-16">
+        <p class="label opacity-40 mb-10">More {p.category}</p>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+          {related.map((r) => (
+            <a href={`${base}products/${r.slug}`} class="group block">
+              <div
+                class="w-full aspect-[3/4] mb-3 relative overflow-hidden"
+                style={`background-color: ${r.bg};`}
+              >
+                {r.image && (
+                  <img
+                    src={r.image}
+                    alt={r.name}
+                    class="w-full h-full object-cover absolute inset-0 transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                )}
+              </div>
+              <p class="label mb-1 opacity-40">{r.category}</p>
+              <p class="label mb-1">{r.name}</p>
+              <p class="label opacity-60">{r.price}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+  </div>
+
+</Layout>

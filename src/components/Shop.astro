@@ -1,60 +1,6 @@
 ---
-const products = [
-  {
-    id: '01',
-    name:       'Ash-glaze Serving Bowl',
-    category:   'Pottery',
-    price:      '€ 68',
-    bg:         '#C8C3BA',
-    shopifyUrl: 'https://your-store.myshopify.com/products/ash-glaze-bowl',
-    soldOut:    false,
-  },
-  {
-    id: '02',
-    name:       'Wabi-sabi Vase — Small',
-    category:   'Pottery',
-    price:      '€ 42',
-    bg:         '#BEB9B0',
-    shopifyUrl: 'https://your-store.myshopify.com/products/wabi-vase-small',
-    soldOut:    false,
-  },
-  {
-    id: '03',
-    name:       'Espresso Cup',
-    category:   'Pottery',
-    price:      '€ 32',
-    bg:         '#C4BEB5',
-    shopifyUrl: 'https://your-store.myshopify.com/products/espresso-cup',
-    soldOut:    false,
-  },
-  {
-    id: '04',
-    name:       'Lavender & Clay Soap',
-    category:   'Soap',
-    price:      '€ 12',
-    bg:         '#D0CAC1',
-    shopifyUrl: 'https://your-store.myshopify.com/products/lavender-clay-soap',
-    soldOut:    false,
-  },
-  {
-    id: '05',
-    name:       'Goat Milk Rose Soap',
-    category:   'Soap',
-    price:      '€ 13',
-    bg:         '#B8B3AB',
-    shopifyUrl: 'https://your-store.myshopify.com/products/goat-milk-rose-soap',
-    soldOut:    false,
-  },
-  {
-    id: '06',
-    name:       'Soap Gift Set — 3 bars',
-    category:   'Soap',
-    price:      '€ 34',
-    bg:         '#D4CFC8',
-    shopifyUrl: 'https://your-store.myshopify.com/products/soap-gift-set',
-    soldOut:    false,
-  },
-];
+import { products } from '../data/products';
+const base = import.meta.env.BASE_URL;
 ---
 
 <section id="shop" class="border-t border-[#0A0A0A]/15 py-20 md:py-28">
@@ -78,54 +24,58 @@ const products = [
     ))}
   </div>
 
-  <!-- Product list: table-like rows -->
-  <div id="product-grid" class="px-6 md:px-10 divide-y divide-[#0A0A0A]/10">
+  <!-- Product card grid -->
+  <div id="product-grid" class="px-6 md:px-10 grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
     {products.map((p) => (
-      <article
-        class="product-card flex items-center gap-6 py-5 group"
-        data-category={p.category}
-      >
-        <!-- Thumbnail -->
-        <div
-          class="flex-shrink-0 w-14 h-14 md:w-16 md:h-16 relative overflow-hidden"
-          style={`background-color: ${p.bg};`}
-        >
-          <img
-            src={`/maisterpiece/images/shop-${p.id}.jpg`}
-            alt={p.name}
-            class="w-full h-full object-cover absolute inset-0 opacity-0"
-            loading="lazy"
-            onerror="this.style.display='none'"
-          />
-        </div>
+      <article class="product-card group reveal" data-category={p.category}>
 
-        <!-- Name + category -->
-        <div class="flex-1 min-w-0">
-          <p class="label mb-0.5 opacity-40">{p.category}</p>
-          <p class="label">{p.name}</p>
-        </div>
+        <!-- Image -->
+        <a href={`${base}products/${p.slug}`} class="block w-full aspect-[3/4] mb-4 relative overflow-hidden" style={`background-color: ${p.bg};`}>
+          {p.image && (
+            <img
+              src={p.image}
+              alt={p.name}
+              class="w-full h-full object-cover absolute inset-0 transition-transform duration-700 group-hover:scale-105"
+              loading="lazy"
+            />
+          )}
+          {p.soldOut && (
+            <div class="absolute inset-0 bg-[#F5F0E4]/60 flex items-center justify-center">
+              <span class="label">Sold out</span>
+            </div>
+          )}
+        </a>
 
-        <!-- Price -->
-        <span class="label shrink-0 hidden sm:block">{p.price}</span>
+        <!-- Info -->
+        <p class="label mb-1 opacity-40">{p.category}</p>
+        <p class="label mb-3">{p.name}</p>
+        <p class="label mb-4">{p.price}</p>
 
-        <!-- CTA -->
-        {p.soldOut ? (
-          <span class="label opacity-30 shrink-0">Sold out</span>
-        ) : (
+        <!-- Actions -->
+        <div class="flex gap-3">
           <a
-            href={p.shopifyUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="label shrink-0 border border-[#0A0A0A]/30 px-4 py-2 hover:bg-[#0A0A0A] hover:text-[#F5F0E4] hover:border-[#0A0A0A] transition-all duration-150"
+            href={`${base}products/${p.slug}`}
+            class="label flex-1 text-center border border-[#0A0A0A]/30 px-4 py-2 hover:bg-[#0A0A0A]/5 transition-colors duration-150"
           >
-            Buy →
+            Detail
           </a>
-        )}
+          {!p.soldOut && (
+            <a
+              href={p.shopifyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="label flex-1 text-center border border-[#0A0A0A] px-4 py-2 bg-[#0A0A0A] text-[#F5F0E4] hover:bg-transparent hover:text-[#0A0A0A] transition-all duration-150"
+            >
+              Buy →
+            </a>
+          )}
+        </div>
+
       </article>
     ))}
   </div>
 
-  <p class="px-6 md:px-10 mt-8 label opacity-30">
+  <p class="px-6 md:px-10 mt-12 label opacity-30">
     Payments via Shopify. Shipping within the EU.
   </p>
 
