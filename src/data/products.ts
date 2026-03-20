@@ -23,6 +23,9 @@ export const products: Product[] = [
     image: 'https://cdn.prod.website-files.com/658f544331d16c0a01bd6937/69bc63500574095e30efcdd0_IMG_0748.JPG',
     gallery: [
       'https://cdn.prod.website-files.com/658f544331d16c0a01bd6937/69bc63500574095e30efcdd0_IMG_0748.JPG',
+      'https://cdn.prod.website-files.com/658f544331d16c0a01bd6937/69bc635066720bf2459ae5cd_IMG_0749.JPG',
+      'https://cdn.prod.website-files.com/658f544331d16c0a01bd6937/69bc63500574095e30efcdd0_IMG_0748.JPG',
+      'https://cdn.prod.website-files.com/658f544331d16c0a01bd6937/69bc635066720bf2459ae5cd_IMG_0749.JPG',
     ],
     description: 'Hand-thrown in Iceland from local stoneware clay. The natural ash glaze creates a unique surface finish — no two bowls are ever the same. Suitable for everyday use, food safe.',
     shopifyUrl: 'https://your-store.myshopify.com/products/ash-glaze-bowl',
@@ -38,6 +41,9 @@ export const products: Product[] = [
     image: 'https://cdn.prod.website-files.com/658f544331d16c0a01bd6937/69bc635066720bf2459ae5cd_IMG_0749.JPG',
     gallery: [
       'https://cdn.prod.website-files.com/658f544331d16c0a01bd6937/69bc635066720bf2459ae5cd_IMG_0749.JPG',
+      'https://cdn.prod.website-files.com/658f544331d16c0a01bd6937/69bc63500574095e30efcdd0_IMG_0748.JPG',
+      'https://cdn.prod.website-files.com/658f544331d16c0a01bd6937/69bc635066720bf2459ae5cd_IMG_0749.JPG',
+      'https://cdn.prod.website-files.com/658f544331d16c0a01bd6937/69bc63500574095e30efcdd0_IMG_0748.JPG',
     ],
     description: 'Embracing the beauty of imperfection. Each vase is unique in form and glaze, celebrating the wabi-sabi philosophy. Perfect for a single stem or small dried arrangement.',
     shopifyUrl: 'https://your-store.myshopify.com/products/wabi-vase-small',
