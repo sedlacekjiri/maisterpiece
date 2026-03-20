@@ -1,16 +1,4 @@
 ---
-const partners = [
-  {
-    name: 'Kaffifélagid',
-    logo: 'https://cdn.prod.website-files.com/658f544331d16c0a01bd6937/69bd3085ad6a05df319732c0_kaffife%CC%81lagid.JPG',
-    dark: false,
-  },
-  {
-    name: 'Bus 1',
-    logo: 'https://cdn.prod.website-files.com/658f544331d16c0a01bd6937/69bd30ac694d20260c3121f4_Bus%2B1%2BWhite-1.webp',
-    dark: true,
-  },
-];
 ---
 
 <section class="border-b border-[#0A0A0A]/10">
@@ -18,17 +6,32 @@ const partners = [
 
     <p class="label opacity-40 shrink-0">Stocked at</p>
 
-    <div class="flex flex-wrap items-center gap-8 md:gap-12">
-      {partners.map(({ name, logo, dark }) => (
-        <div class={`flex items-center justify-center h-10 ${dark ? 'bg-[#0A0A0A] px-4 rounded' : ''}`}>
-          <img
-            src={logo}
-            alt={name}
-            class="h-full w-auto object-contain"
-            loading="lazy"
-          />
-        </div>
-      ))}
+    <div class="flex flex-wrap items-center gap-10 md:gap-14">
+
+      <!-- Kaffifélagid — wordmark style -->
+      <svg viewBox="0 0 200 36" class="h-7 w-auto opacity-70 hover:opacity-100 transition-opacity" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Kaffifélagid">
+        <text x="0" y="26" font-family="Georgia, serif" font-size="22" fill="#0A0A0A" letter-spacing="1">Kaffifélagid</text>
+      </svg>
+
+      <!-- Separator -->
+      <span class="hidden md:block w-px h-5 bg-[#0A0A0A]/15"></span>
+
+      <!-- Bus 1 — geometric mark + text -->
+      <svg viewBox="0 0 90 36" class="h-7 w-auto opacity-70 hover:opacity-100 transition-opacity" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Bus 1">
+        <rect x="0" y="4" width="28" height="28" rx="3" fill="#0A0A0A"/>
+        <text x="4" y="24" font-family="Georgia, serif" font-size="18" fill="#F5F0E4" font-weight="bold">B</text>
+        <text x="34" y="26" font-family="Georgia, serif" font-size="20" fill="#0A0A0A" letter-spacing="0.5">Bus 1</text>
+      </svg>
+
+      <!-- Separator -->
+      <span class="hidden md:block w-px h-5 bg-[#0A0A0A]/15"></span>
+
+      <!-- Placeholder 3 — add your next partner here -->
+      <svg viewBox="0 0 140 36" class="h-7 w-auto opacity-30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Your café here">
+        <rect x="0" y="10" width="16" height="16" rx="8" stroke="#0A0A0A" stroke-width="1.5"/>
+        <text x="24" y="24" font-family="Georgia, serif" font-size="16" fill="#0A0A0A" opacity="0.5">Your café here</text>
+      </svg>
+
     </div>
 
   </div>
