@@ -31,14 +31,16 @@ const related = products.filter((r) => r.category === p.category && r.slug !== p
       <div class="space-y-3">
         <!-- Primary image -->
         <div
+          id="main-image-wrap"
           class="w-full aspect-[4/5] relative overflow-hidden"
           style={`background-color: ${p.bg};`}
         >
           {p.image ? (
             <img
+              id="main-product-img"
               src={p.image}
               alt={p.name}
-              class="w-full h-full object-cover"
+              class="w-full h-full object-cover transition-opacity duration-200"
               fetchpriority="high"
             />
           ) : (
@@ -48,14 +50,16 @@ const related = products.filter((r) => r.category === p.category && r.slug !== p
           )}
         </div>
 
-        <!-- Gallery row (additional images if any) -->
+        <!-- Gallery thumbnails -->
         {p.gallery.length > 1 && (
-          <div class="grid grid-cols-3 gap-3">
+          <div class="grid grid-cols-4 gap-2">
             {p.gallery.map((src, i) => (
-              <div
-                class="aspect-square relative overflow-hidden cursor-pointer gallery-thumb"
+              <button
+                type="button"
+                class="gallery-thumb aspect-square relative overflow-hidden focus:outline-none ring-offset-1 ring-[#0A0A0A]"
                 style={`background-color: ${p.bg};`}
                 data-src={src}
+                aria-label={`View ${i + 1}`}
               >
                 <img
                   src={src}
@@ -63,7 +67,7 @@ const related = products.filter((r) => r.category === p.category && r.slug !== p
                   class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                 />
-              </div>
+              </button>
             ))}
           </div>
         )}
@@ -161,3 +165,30 @@ const related = products.filter((r) => r.category === p.category && r.slug !== p
   </div>
 
 </Layout>
+
+<script>
+  const mainImg = document.getElementById('main-product-img') as HTMLImageElement | null;
+  const thumbs  = document.querySelectorAll<HTMLButtonElement>('.gallery-thumb');
+
+  if (mainImg) {
+    thumbs.forEach((thumb) => {
+      thumb.addEventListener('click', () => {
+        const src = thumb.dataset.src;
+        if (!src || src === mainImg.src) return;
+
+        mainImg.style.opacity = '0';
+        setTimeout(() => {
+          mainImg.src = src;
+          mainImg.style.opacity = '1';
+        }, 150);
+
+        // Active ring
+        thumbs.forEach((t) => t.classList.remove('ring-2'));
+        thumb.classList.add('ring-2');
+      });
+    });
+
+    // Mark first thumb as active on load
+    if (thumbs[0]) thumbs[0].classList.add('ring-2');
+  }
+</script>
